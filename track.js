@@ -6,7 +6,7 @@ class Track {
 
     get_position(offset) { // unit circle
         return {
-            x: this.center.x + Math.cos(offset) * this.radius,
+            x: this.center.x + Math.cos(offset * 3) * this.radius,
             y: this.center.y - Math.sin(offset) * this.radius
         }
     }
@@ -15,7 +15,7 @@ class Track {
         ctx.beginPath()
         for( let a = 0; a < Math.PI*2; a = a + 0.1 ) {
             ctx.lineTo(
-                this.center.x + Math.cos(a) * this.radius,
+                this.center.x + Math.cos(a * 3) * this.radius,
                 this.center.y - Math.sin(a) * this.radius
             )
         }
