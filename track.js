@@ -13,7 +13,13 @@ class Track {
 
     draw(ctx) {
         ctx.beginPath()
-        ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2)
+        for( let a = 0; a < Math.PI*2; a = a + 0.1 ) {
+            ctx.lineTo(
+                this.center.x + Math.cos(a) * this.radius,
+                this.center.y - Math.sin(a) * this.radius
+            )
+        }
+        ctx.closePath()
         ctx.strokeStyle = "white"
         ctx.stroke()
     }

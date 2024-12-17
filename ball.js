@@ -7,6 +7,11 @@ class Ball {
         this.center = this.track.get_position(this.offset)
     }
 
+    move() {
+        this.offset = this.offset + this.speed
+        this.center = this.track.get_position(this.offset)
+    }
+
     draw(ctx) {
         ctx.beginPath()
         ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2)
