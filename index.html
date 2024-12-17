@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>polyrythm</title>
+</head>
+<body style="background-color: red; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <canvas id="canvas" style="background-color: rgb(0, 0, 0);"></canvas>
+    <script src="track.js"></script>
+    <script src="ball.js"></script>
+    <script>
+        const size = Math.min(600, window.innerWidth * 8 / 10)
+        the_canvas = document.getElementById("canvas")
+        the_canvas.width = size
+        the_canvas.height = size
+
+        const track_center = { x: size/2, y: size/2 }
+        const track_radius = 100
+        const ball_radius = 10
+        const ball_speed = 0.1
+
+        const ctx = the_canvas.getContext("2d")
+        const track = new Track(track_center, track_radius)
+
+        const ball = new Ball(track, ball_radius, ball_speed)
+
+        track.draw(ctx)
+        ball.draw(ctx)
+    </script>
+</body>
+</html>
