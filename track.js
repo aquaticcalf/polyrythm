@@ -13,11 +13,9 @@ class Track {
 
     draw(ctx) {
         ctx.beginPath()
-        for( let a = 0; a < Math.PI*2; a = a + 0.1 ) {
-            ctx.lineTo(
-                this.center.x + Math.cos(a * 3) * this.radius,
-                this.center.y - Math.sin(a) * this.radius
-            )
+        for( let a = 0; a < Math.PI*2; a = a + 0.01 ) {
+            const pos = this.get_position(a)
+            ctx.lineTo(pos.x, pos.y)
         }
         ctx.closePath()
         ctx.strokeStyle = "white"
