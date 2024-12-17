@@ -17,21 +17,37 @@
         the_canvas.height = size
 
         const track_center = { x: size/2, y: size/2 }
-        const track_radius = 100
+        const track_min_radius = 100
+        const track_step = 15
         const ball_radius = 10
-        const ball_speed = 0.01
+        const ball_min_speed = 0.01
+        const ball_step = -0.0001
+
+        const sound_frequencies = [ 1760, 1567.98, 1396.91, 1318.51, 1174.66, 1046.5, 987.77, 880, 783.99, 698.46, 659.25, 587.33, 523.25, 493.88, 440, 392, 349.23, 329.63, 293.66, 261.63 ]
+
+        const tracks = []
+        const balls = []
+        const number = 20
+
+        for (let i = 0; i < number; i++ ) {
+            const track_radius = track_min_radius + i * track_step
+            const ball_speed = ball_min_speed + i * ball_step
+            const ball_sound_frequency = sound_frequencies[i]
+            const track = new Track(track_center, track_radius)
+            const ball = new Ball(track, ball_radius, ball_speed, ball_sound_frequency)
+            tracks.push(track)
+            balls.push(ball)
+        }
 
         const ctx = the_canvas.getContext("2d")
-        const track = new Track(track_center, track_radius)
-        const ball = new Ball(track, ball_radius, ball_speed)
 
         animate()
 
         function animate(){
             ctx.clearRect(0,0,size, size)
-            track.draw(ctx)
-            ball.move()
-            ball.draw(ctx)
+            tracks.forEach((track)=>track.draw(ctx))
+            balls.forEach((ball)=>ball.move(ctx))
+            balls.forEach((ball)=>ball.draw(ctx))
             requestAnimationFrame(animate)
         }
     </script>
